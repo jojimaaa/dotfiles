@@ -112,8 +112,11 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="mate ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+
+# disable sound
+unsetopt BEEP
