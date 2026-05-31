@@ -1,5 +1,6 @@
 user-theme@gnome-shell-extensions.gcampax.github.com
 blur-my-shell@aunetx
-Bluetooth-Battery-Meter@maniacx.github.com
 dash-to-panel@jderose9.github.com
+clipboard-indicator@tudmotu.com
 caffeine@patapon.info
+tweaks-system-menu@extensions.gnome-shell.fifi.org
