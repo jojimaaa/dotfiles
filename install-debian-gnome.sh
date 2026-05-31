@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 set -e
 
+sudo apt install curl unzip python3 python3-pip pipx pyenv
+
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 # Adding Ghostty
 curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
 
 echo "deb https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | sudo tee /etc/apt/sources.list.d/debian.griffo.io.list
 
-sudo apt update
-sudo apt upgrade
-
-sudo apt install curl unzip realpath dirname
-
+echo "Installing ohmyposh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
 
 sudo apt install ghostty
@@ -19,9 +22,6 @@ sudo apt install zsh
 
 # setup zsh as default shell
 chsh -s $(which zsh)
-
-# ohmyzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -33,11 +33,15 @@ echo "→ Aplicando symlinks com stow..."
 cd "$DOTFILES"
 stow gnome
 stow ghostty
+
+rm ~/.config/gtk-3.0/bookmarks
 stow gtk
 stow icons
 stow ohmyposh
 stow ohmyzsh
 stow themes
+
+rm ~/.zshrc
 stow zsh
 
 # ── dconf ───────────────────────────────────────────────────────────────────
@@ -52,7 +56,7 @@ if [[ ! -f "$EXTENSIONS_FILE" ]]; then
 else
     if ! command -v gext &>/dev/null; then
         echo "→ Instalando gnome-extensions-cli..."
-        pip install --user gnome-extensions-cli
+        pipx install gnome-extensions-cli
         export PATH="$HOME/.local/bin:$PATH"
     fi
 
@@ -83,6 +87,9 @@ else
         gnome-extensions enable "$uuid" 2>/dev/null && echo "  ✓ $uuid" || true
     done < "$EXTENSIONS_FILE"
 fi
+
+# ohmyzsh
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 
 echo ""
 echo "✓ Pronto! Reinicie a sessão GNOME (logout ou Alt+F2 → r)."
