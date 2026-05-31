@@ -26,6 +26,9 @@ chsh -s $(which zsh)
 # zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+# zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 
 # ── Stow ────────────────────────────────────────────────────────────────────
