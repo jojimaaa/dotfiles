@@ -6,7 +6,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -15,6 +14,8 @@ eval "$(pyenv init - zsh)"
 ZSH_THEME="robbyrussell"
 
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/main.json)"
+eval "$(zoxide init zsh)"
+eval "$(pyenv init - zsh)"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -76,7 +77,12 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/main.json)"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(
+    git
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    zsh-shift-select
+)
 
 source $ZSH/oh-my-zsh.sh
 

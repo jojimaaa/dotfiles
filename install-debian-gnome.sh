@@ -19,6 +19,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 sudo apt install ghostty
 sudo apt install stow
 sudo apt install zsh
+sudo apt install zoxide fzf
 
 # setup zsh as default shell
 chsh -s $(which zsh)
@@ -28,6 +29,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# zsh-shift-select
+git clone https://github.com/jirutka/zsh-shift-select.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-shift-select
 
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 
