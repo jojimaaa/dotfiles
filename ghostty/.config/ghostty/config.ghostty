@@ -8,4 +8,4 @@ keybind = alt+arrow_right=goto_split:right
 font-family = "JetBrainsMono"
 window-width=150
 window-height=40
-background-opacity = 0.8
+background-opacity = 0.85
