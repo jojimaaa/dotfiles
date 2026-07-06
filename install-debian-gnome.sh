@@ -9,9 +9,14 @@ sudo apt install gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Adding Ghostty
-curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
+sudo install -d -m 0755 /etc/apt/keyrings
+curl -fsSL https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | sudo gpg --dearmor --yes -o /etc/apt/keyrings/debian.griffo.io.gpg
 
-echo "deb https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | sudo tee /etc/apt/sources.list.d/debian.griffo.io.list
+echo "deb [signed-by=/etc/apt/keyrings/debian.griffo.io.gpg] https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | sudo tee /etc/apt/sources.list.d/debian.griffo.io.list > /dev/null
+
+echo "deb-src https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | sudo tee -a /etc/apt/sources.list.d/debian.griffo.io.list
+
+sudo apt update
 
 echo "Installing ohmyposh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
@@ -20,6 +25,9 @@ sudo apt install ghostty
 sudo apt install stow
 sudo apt install zsh
 sudo apt install zoxide fzf
+
+# adding Oh-My-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # setup zsh as default shell
 chsh -s $(which zsh)
@@ -95,8 +103,11 @@ else
     done < "$EXTENSIONS_FILE"
 fi
 
-# ohmyzsh
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+# ativando sincronização do relógio com internet
+sudo apt update
+sudo apt install systemd-timesyncd
+sudo systemctl enable --now systemd-timesyncd
+sudo timedatectl set-ntp true
 
 echo ""
 echo "✓ Pronto! Reinicie a sessão GNOME (logout ou Alt+F2 → r)."
