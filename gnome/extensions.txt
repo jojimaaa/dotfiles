@@ -5,8 +5,6 @@ just-perfection-desktop@just-perfection
 dash-to-panel@jderose9.github.com
 extension-list@tu.berry
 caffeine@patapon.info
-places-menu@gnome-shell-extensions.gcampax.github.com
-bluetooth-quick-connect@bjarosze.gmail.com
 tweaks-system-menu@extensions.gnome-shell.fifi.org
 clipboard-indicator@tudmotu.com
 
