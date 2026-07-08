@@ -7,4 +7,3 @@ extension-list@tu.berry
 caffeine@patapon.info
 tweaks-system-menu@extensions.gnome-shell.fifi.org
 clipboard-indicator@tudmotu.com
-
