@@ -1,9 +1,9 @@
 user-theme@gnome-shell-extensions.gcampax.github.com
 blur-my-shell@aunetx
 Bluetooth-Battery-Meter@maniacx.github.com
-just-perfection-desktop@just-perfection
 dash-to-panel@jderose9.github.com
 extension-list@tu.berry
 caffeine@patapon.info
 tweaks-system-menu@extensions.gnome-shell.fifi.org
 clipboard-indicator@tudmotu.com
+appindicatorsupport@rgcjonas.gmail.com
