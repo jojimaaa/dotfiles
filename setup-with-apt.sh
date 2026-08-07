@@ -1,26 +1,18 @@
-sudo apt install curl unzip python3 python3-pip pipx pyenv
+sudo apt install curl unzip python3 python3-pip pipx pyenv -y
 
-sudo apt install flatpak
+sudo apt install flatpak -y
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Adding Ghostty
-sudo install -d -m 0755 /etc/apt/keyrings
-curl -fsSL https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | sudo gpg --dearmor --yes -o /etc/apt/keyrings/debian.griffo.io.gpg
-
-echo "deb [signed-by=/etc/apt/keyrings/debian.griffo.io.gpg] https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | sudo tee /etc/apt/sources.list.d/debian.griffo.io.list > /dev/null
-
-echo "deb-src https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | sudo tee -a /etc/apt/sources.list.d/debian.griffo.io.list
-
-sudo apt update
+# Adding OhMyPosh
 
 echo "Installing ohmyposh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
 
-sudo apt install ghostty
-sudo apt install stow
-sudo apt install zsh
-sudo apt install zoxide fzf
+sudo apt install tmux -y
+sudo apt install stow -y
+sudo apt install zsh -y
+sudo apt install zoxide fzf -y
 
 # adding Oh-My-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -46,6 +38,7 @@ stow ghostty
 
 stow ohmyposh
 stow ohmyzsh
+stow tmux
 
 rm ~/.zshrc
 stow zsh
