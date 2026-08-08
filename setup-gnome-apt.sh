@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
-sudo apt install curl unzip python3 python3-pip pipx pyenv
+sudo apt install curl unzip python3 python3-pip pipx pyenv -y
 
-sudo apt install flatpak
-sudo apt install gnome-software-plugin-flatpak
+sudo apt install flatpak -y
+sudo apt install gnome-software-plugin-flatpak -y
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 sudo apt update
 
-sudo apt install stow
+sudo apt install stow -y
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 
 # ── Stow ────────────────────────────────────────────────────────────────────
@@ -68,7 +68,7 @@ fi
 
 # ativando sincronização do relógio com internet
 sudo apt update
-sudo apt install systemd-timesyncd
+sudo apt install systemd-timesyncd -y
 sudo systemctl enable --now systemd-timesyncd
 sudo timedatectl set-ntp true
 

@@ -9,10 +9,7 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 echo "Installing ohmyposh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
 
-sudo apt install tmux -y
-sudo apt install stow -y
-sudo apt install zsh -y
-sudo apt install zoxide fzf -y
+sudo apt install tmux stow zsh zoxide fzf -y
 
 # adding Oh-My-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -34,11 +31,10 @@ DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 # ── Stow ────────────────────────────────────────────────────────────────────
 echo "→ Aplicando symlinks com stow..."
 cd "$DOTFILES"
-stow ghostty
-
-stow ohmyposh
-stow ohmyzsh
-stow tmux
 
 rm ~/.zshrc
 stow zsh
+stow tmux
+stow ohmyposh
+stow ohmyzsh
+
