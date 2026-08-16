@@ -4,12 +4,15 @@ sudo apt install flatpak -y
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
+# Adding JetBrainsMono Fonts
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
+
 # Adding OhMyPosh
 
 echo "Installing ohmyposh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
 
-sudo apt install tmux stow zsh zoxide fzf -y
+sudo apt install tmux stow zsh zoxide fzf nvim -y
 
 # adding Oh-My-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -33,6 +36,8 @@ echo "→ Aplicando symlinks com stow..."
 cd "$DOTFILES"
 
 rm ~/.zshrc
+
+stow nvim
 stow zsh
 stow tmux
 stow ohmyposh
