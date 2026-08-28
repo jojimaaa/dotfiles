@@ -74,21 +74,21 @@ local function layout()
 		}
 	end
 
-	---@return table
+		---@return table
 	lazycache.mru = function()
 		local result = {}
 		for _, filename in ipairs(vim.v.oldfiles) do
 			if vim.loop.fs_stat(filename) ~= nil then
-				local icon, hl = require("nvim-web-devicons").get_icon(filename, vim.fn.fnamemodify(filename, ":e"))
+				local icon, _ = require("nvim-web-devicons").get_icon(filename, vim.fn.fnamemodify(filename, ":e"))
+				icon = icon or "" -- Ícone padrão caso não encontre
 				local filename_short = string.sub(vim.fn.fnamemodify(filename, ":t"), 1, 30)
 				table.insert(
 					result,
 					button(
 						tostring(#result + 1),
 						string.format("%s  %s", icon, filename_short),
-						string.format("<Cmd>e %s<CR>", filename),
-						nil,
-						{ hl = { { hl, 0, 3 }, { "Normal", 5, #filename_short + 5 } } }
+						string.format("<Cmd>e %s<CR>", filename)
+						-- Removemos o argumento de 'opts' com a tabela de 'hl' inválida
 					)
 				)
 				if #result == 9 then
@@ -99,7 +99,7 @@ local function layout()
 		return result
 	end
 
-	---@return table
+  ---@return table
 	lazycache.fortune = function()
 		return require("alpha.fortune")()
 	end
