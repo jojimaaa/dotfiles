@@ -13,6 +13,8 @@ export ZSH="$HOME/.oh-my-zsh"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -118,11 +120,12 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias fznvim="fzf -m --preview='batcat --color=always {}' | xargs nvim -p"
 
 # disable sound
 unsetopt BEEP
