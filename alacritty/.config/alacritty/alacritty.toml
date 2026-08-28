@@ -17,6 +17,10 @@ family = "RobotoMono Nerd Font"
 [font]
 size = 13
 
+[window]
+decorations = "None"
+startup_mode = "Fullscreen"
+
 [window.padding]
 x = 5
 y = 5
