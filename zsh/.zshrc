@@ -133,3 +133,21 @@ unsetopt BEEP
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Correção automática para SSH Agent Forwarding no tmux
+if [ -n "$TMUX" ]; then
+  function _refresh_tmux_ssh() {
+    # 1. Tenta buscar o agente encaminhado pelo SSH (-A)
+    local socket=$(tmux show-environment | grep '^SSH_AUTH_SOCK=')
+    if [ -n "$socket" ]; then
+      export "$socket"
+    # 2. Se não houver SSH encaminhado, usa o agente local do próprio notebook
+    elif [ -z "$SSH_AUTH_SOCK" ] && [ -S "${XDG_RUNTIME_DIR}/ssh-agent.socket" ]; then
+      export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+    fi
+  }
+  # Executa a função automaticamente antes de exibir cada comando no terminal
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _refresh_tmux_ssh
+fi
+

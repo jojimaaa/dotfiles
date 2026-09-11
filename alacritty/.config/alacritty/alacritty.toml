@@ -15,7 +15,7 @@ style = "Regular"
 family = "RobotoMono Nerd Font"
 
 [font]
-size = 13
+size = 11
 
 [cursor]
 unfocused_hollow = true
