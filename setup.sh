@@ -35,14 +35,14 @@ echo "Gerenciador detectado: $PM_NAME. Iniciando instalações..."
 # Mapeia os nomes corretos de pacotes que variam dependendo da distribuição
 case "$PM_NAME" in
 apt)
-  $INSTALL_CMD curl unzip python3 python3-pip pipx pyenv flatpak tmux stow zsh zoxide fzf neovim
+  $INSTALL_CMD curl unzip python3 python3-pip pipx pyenv flatpak tmux stow zsh zoxide fzf neovim lazygit
   ;;
 dnf)
   $INSTALL_CMD curl unzip python3 python3-pip pipx pyenv flatpak tmux stow zsh zoxide fzf neovim
   ;;
 pacman)
   # Arch usa 'python' no lugar de 'python3' e não separa o pip em pacote isolado
-  $INSTALL_CMD curl unzip python pipx pyenv flatpak tmux stow zsh zoxide fzf neovim
+  $INSTALL_CMD curl unzip python pipx pyenv flatpak tmux stow zsh zoxide fzf neovim lazygit
   ;;
 zypper)
   # openSUSE usa prefixos diferentes para pacotes de desenvolvimento
